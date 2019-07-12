@@ -39,6 +39,12 @@ public class HouzesSocketHandler {
                 houzesSocketEventListener.onLocationReceived((JSONObject) args[0]);
             }
 
+        }).on(HouzesSocketEvents.LOCATION_SHARE_SUCCESS, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                houzesSocketEventListener.onLocationShareSuccess((JSONObject) args[0]);
+            }
+
         }).on(HouzesSocketEvents.LOCATION_SHARE_ERROR, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -57,6 +63,12 @@ public class HouzesSocketHandler {
                 houzesSocketEventListener.onLocationUpdateError((String) args[0]);
             }
 
+        }).on(HouzesSocketEvents.DRIVING_STOPPED, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                houzesSocketEventListener.onStopDriving((JSONObject) args[0]);
+            }
+
         }).on(HouzesSocketEvents.USER_DISCONNECTED, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -70,6 +82,7 @@ public class HouzesSocketHandler {
             }
 
         });
+
         houzesSocket.connect();
     }
 
@@ -91,6 +104,10 @@ public class HouzesSocketHandler {
             data = new Gson().toJson(jsonObject);
         }
         houzesSocket.emit(HouzesSocketEvents.LOCATION_SHARE, data);
+    }
+
+    public static void stopDriving() throws Exception {
+        houzesSocket.emit(HouzesSocketEvents.STOP_DRIVING);
     }
 
     public static void disconnectSocket() throws Exception {

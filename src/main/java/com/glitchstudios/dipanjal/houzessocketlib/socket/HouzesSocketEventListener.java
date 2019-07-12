@@ -1,7 +1,5 @@
 package com.glitchstudios.dipanjal.houzessocketlib.socket;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 public interface HouzesSocketEventListener {
@@ -11,7 +9,9 @@ public interface HouzesSocketEventListener {
     void onLocationUpdateSuccess(JSONObject userLocation);
     void onLocationUpdateError(String errorMessage);
     void onLocationReceived(JSONObject driverLocation);
+    void onLocationShareSuccess(JSONObject driverLocation);
     void onLocationShareError(String errorMessage);
+    void onStopDriving(JSONObject leftUser);
     void onUserDisconnected(JSONObject disconnectedUser);
     void onDisconnect();
 }
