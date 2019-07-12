@@ -30,7 +30,7 @@ public class HouzesSocketHandler {
 
             @Override
             public void call(Object... args) {
-                houzesSocketEventListener.onError((Exception) args[0]);
+                houzesSocketEventListener.onError(args[0]);
             }
 
         }).on(HouzesSocketEvents.LOCATION_RECEIVE, new Emitter.Listener() {
